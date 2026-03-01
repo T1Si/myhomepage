@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>版本信息</title>
+  <style>
+    body {
+      font-family: monospace;
+      padding: 2rem;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .info {
+      background: #2d2d2d;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-left: 3px solid #4CAF50;
+      border-radius: 4px;
+    }
+    .version {
+      font-size: 2rem;
+      color: #4CAF50;
+      margin-bottom: 1rem;
+    }
+    .timestamp {
+      color: #888;
+      font-size: 0.875rem;
+    }
+    .cache-info {
+      background: #2d2d2d;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-left: 3px solid #2196F3;
+      border-radius: 4px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 部署版本检查</h1>
+  
+  <div class="info">
+    <div class="version">版本: 2026.03.01-v5</div>
+    <div class="timestamp">
+      构建时间: 2026-03-01 19:30:00<br>
+      Git Commit: 80b3d07 - Fix docs center layout
+    </div>
+  </div>
+
+  <div class="cache-info">
+    <h3>📦 缓存信息</h3>
+    <p>页面加载时间: <span id="load-time"></span></p>
+    <p>CSS 版本: <span id="css-version"></span></p>
+    <p>浏览器: <span id="browser"></span></p>
+  </div>
+
+  <div>
+    <h3>🔄 清除缓存方法</h3>
+    <button onclick="location.reload(true)">强制刷新</button>
+    <button onclick="clearCacheAndReload()">清除缓存并刷新</button>
+    <button onclick="window.open(location.href, '_blank')">新窗口打开</button>
+  </div>
+
+  <div class="info">
+    <h3>✅ 最新改动</h3>
+    <ul>
+      <li>文档中心改为单页面布局（position: fixed）</li>
+      <li>左侧边栏完全固定，不可滚动</li>
+      <li>只有右侧内容区域可以滚动</li>
+      <li>整个页面高度固定在视口内</li>
+    </ul>
+  </div>
+
+  <div class="cache-info">
+    <h3>🧪 测试步骤</h3>
+    <ol>
+      <li>访问 <a href="project1-docs.html" style="color: #2196F3;">文档中心</a></li>
+      <li>检查左侧边栏是否可以滚动（应该不能滚动）</li>
+      <li>检查右侧内容是否可以滚动（应该可以滚动）</li>
+      <li>检查页面是否固定高度（不应该有整体滚动条）</li>
+    </ol>
+  </div>
+
+  <script>
+    // 显示加载时间
+    document.getElementById('load-time').textContent = new Date().toLocaleString('zh-CN');
+    
+    // 检测 CSS 版本
+    const testDiv = document.createElement('div');
+    testDiv.className = 'docs-page';
+    document.body.appendChild(testDiv);
+    const position = window.getComputedStyle(testDiv).position;
+    document.getElementById('css-version').textContent = 
+      position === 'fixed' ? '✅ 最新版本 (fixed)' : '❌ 旧版本 (' + position + ')';
+    testDiv.remove();
+    
+    // 显示浏览器信息
+    document.getElementById('browser').textContent = navigator.userAgent.split(' ').slice(-2).join(' ');
+    
+    // 清除缓存并刷新
+    function clearCacheAndReload() {
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          names.forEach(name => caches.delete(name));
+        }).then(() => {
+          location.reload(true);
+        });
+      } else {
+        location.reload(true);
+      }
+    }
+  </script>
+</body>
+</html>
