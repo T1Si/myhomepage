@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <nav class="navbar">
     <div class="nav-container">
       <a href="#" class="logo logo-with-icon" onclick="return false;" style="cursor: default;">
-        <img src="assets/pics/xiangleme_icon_bright%201.png" alt="响了么" class="logo-icon" style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; object-fit: contain; display: block;">
+        <img src="assets/pics/xiangleme_icon_bright%201.png" alt="响了么" class="logo-icon"
+          style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; object-fit: contain; display: block;">
         <span>响了么</span>
       </a>
     </div>
@@ -21,26 +24,26 @@
 
   <section class="docs-page">
     <div class="docs-layout">
-      <div class="docs-sidebar-frame" style="width: 300px;">
-        <aside class="docs-sidebar" style="padding: 1.5rem 2rem 1.5rem 20px;">
-        <nav class="docs-tree">
-          <a href="#about" class="tree-item" data-doc="about">
-            关于响了么
-          </a>
-          <a href="#guide" class="tree-item" data-doc="guide">
-            使用指南
-          </a>
-          <a href="#privacy" class="tree-item" data-doc="privacy">
-            隐私政策
-          </a>
-          <a href="#terms" class="tree-item" data-doc="terms">
-            用户协议
-          </a>
-          <a href="#update-log" class="tree-item" data-doc="update-log">
-            更新日志
-          </a>
-        </nav>
-      </aside>
+      <div class="docs-sidebar-frame" style="width: 380px;">
+        <aside class="docs-sidebar">
+          <nav class="docs-tree">
+            <a href="#about" class="tree-item" data-doc="about">
+              关于响了么
+            </a>
+            <a href="#guide" class="tree-item" data-doc="guide">
+              使用指南
+            </a>
+            <a href="#privacy" class="tree-item" data-doc="privacy">
+              隐私政策
+            </a>
+            <a href="#terms" class="tree-item" data-doc="terms">
+              用户协议
+            </a>
+            <a href="#update-log" class="tree-item" data-doc="update-log">
+              更新日志
+            </a>
+          </nav>
+        </aside>
       </div>
 
       <main class="docs-main">
@@ -91,7 +94,7 @@
 
     async function initDocs() {
       docContents = await DocLoader.loadAllDocs(docs);
-      
+
       // 从 URL 哈希加载文档
       const hash = window.location.hash.slice(1); // 移除 # 号
       if (hash) {
@@ -101,7 +104,7 @@
           return;
         }
       }
-      
+
       // 默认加载第一个文档
       loadDoc(0);
     }
@@ -110,18 +113,18 @@
       currentIndex = index;
       const doc = docs[index];
       const content = docContents[doc.id];
-      
+
       // 更新 URL 哈希（不触发页面跳转）
       history.replaceState(null, '', `#${doc.id}`);
-      
+
       // 更新页面标题
       document.title = `${doc.title} - 项目一 - 我的作品集`;
-      
+
       document.getElementById('doc-content').innerHTML = `<div class="doc-body">${content}</div>`;
-      
+
       // 生成目录
       generateTOC();
-      
+
       document.querySelectorAll('.tree-item').forEach(item => {
         item.classList.remove('active');
         if (item.dataset.doc === doc.id) {
@@ -130,7 +133,7 @@
       });
 
       updateNavButtons(index);
-      
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -138,28 +141,28 @@
       const docBody = document.querySelector('.doc-body');
       const headings = docBody.querySelectorAll('h2, h3');
       const tocNav = document.getElementById('toc-nav');
-      
+
       if (headings.length === 0) {
         tocNav.innerHTML = '<div class="toc-empty">此文档无标题</div>';
         return;
       }
-      
+
       let tocHTML = '';
       headings.forEach((heading, index) => {
         const id = `heading-${index}`;
         heading.id = id;
-        
+
         const level = heading.tagName === 'H2' ? 'toc-h2' : 'toc-h3';
         const text = heading.textContent;
-        
+
         tocHTML += `<a href="#${id}" class="toc-link ${level}" data-target="${id}">${text}</a>`;
       });
-      
+
       tocNav.innerHTML = tocHTML;
-      
+
       // 添加点击事件
       document.querySelectorAll('.toc-link').forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
           e.preventDefault();
           const targetId = this.dataset.target;
           const targetElement = document.getElementById(targetId);
@@ -167,14 +170,14 @@
             const docsMain = document.querySelector('.docs-main');
             const offsetTop = targetElement.offsetTop - 20;
             docsMain.scrollTo({ top: offsetTop, behavior: 'smooth' });
-            
+
             // 更新活动状态
             document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
             this.classList.add('active');
           }
         });
       });
-      
+
       // 监听滚动，高亮当前章节
       observeHeadings();
     }
@@ -182,7 +185,7 @@
     function observeHeadings() {
       const docsMain = document.querySelector('.docs-main');
       const headings = document.querySelectorAll('.doc-body h2, .doc-body h3');
-      
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -200,7 +203,7 @@
         rootMargin: '-20% 0px -70% 0px',
         threshold: 0
       });
-      
+
       headings.forEach(heading => observer.observe(heading));
     }
 
@@ -229,7 +232,7 @@
 
     // 点击侧边栏导航
     document.querySelectorAll('.tree-item').forEach(item => {
-      item.addEventListener('click', function(e) {
+      item.addEventListener('click', function (e) {
         e.preventDefault();
         const docId = this.dataset.doc;
         const index = docs.findIndex(d => d.id === docId);
@@ -240,14 +243,14 @@
     });
 
     // 点击上一页/下一页
-    document.getElementById('nav-prev').addEventListener('click', function(e) {
+    document.getElementById('nav-prev').addEventListener('click', function (e) {
       e.preventDefault();
       if (currentIndex > 0) {
         loadDoc(currentIndex - 1);
       }
     });
 
-    document.getElementById('nav-next').addEventListener('click', function(e) {
+    document.getElementById('nav-next').addEventListener('click', function (e) {
       e.preventDefault();
       if (currentIndex < docs.length - 1) {
         loadDoc(currentIndex + 1);
@@ -255,7 +258,7 @@
     });
 
     // 监听浏览器前进/后退按钮
-    window.addEventListener('hashchange', function() {
+    window.addEventListener('hashchange', function () {
       const hash = window.location.hash.slice(1);
       if (hash) {
         const index = docs.findIndex(d => d.id === hash);
@@ -269,4 +272,5 @@
   </script>
   <!-- Version: 2026-03-01-v4 -->
 </body>
+
 </html>
