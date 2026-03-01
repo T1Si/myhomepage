@@ -65,20 +65,22 @@ body {
   height: auto;
 }
 
-.logo-with-icon {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
+.logo.logo-with-icon {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
   height: auto;
   white-space: nowrap;
+  color: transparent;
 }
 
-.logo-with-icon span {
-  color: #000000;
+.logo.logo-with-icon span {
+  color: #000000 !important;
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 1;
+  display: inline-block;
 }
 
 .logo-icon {
