@@ -48,8 +48,27 @@
 
       <main class="docs-main">
         <div class="docs-main-inner">
-          <article id="doc-content" class="doc-view">
-          </article>
+          <div class="doc-content-wrapper">
+            <article id="doc-content" class="doc-view">
+            </article>
+
+            <div class="doc-footer-nav">
+              <a href="#" class="footer-nav-btn prev" id="nav-prev">
+                <span class="nav-btn-arrow">←</span>
+                <div class="nav-btn-content">
+                  <span class="nav-btn-label">上一页</span>
+                  <span class="nav-btn-title" id="prev-title"></span>
+                </div>
+              </a>
+              <a href="#" class="footer-nav-btn next" id="nav-next">
+                <div class="nav-btn-content">
+                  <span class="nav-btn-label">下一页</span>
+                  <span class="nav-btn-title" id="next-title"></span>
+                </div>
+                <span class="nav-btn-arrow">→</span>
+              </a>
+            </div>
+          </div>
 
           <aside class="doc-toc">
             <div class="toc-title">页面导航</div>
@@ -58,22 +77,6 @@
             </nav>
           </aside>
 
-          <div class="doc-footer-nav">
-            <a href="#" class="footer-nav-btn prev" id="nav-prev">
-              <span class="nav-btn-arrow">←</span>
-              <div class="nav-btn-content">
-                <span class="nav-btn-label">上一页</span>
-                <span class="nav-btn-title" id="prev-title"></span>
-              </div>
-            </a>
-            <a href="#" class="footer-nav-btn next" id="nav-next">
-              <div class="nav-btn-content">
-                <span class="nav-btn-label">下一页</span>
-                <span class="nav-btn-title" id="next-title"></span>
-              </div>
-              <span class="nav-btn-arrow">→</span>
-            </a>
-          </div>
         </div>
       </main>
     </div>

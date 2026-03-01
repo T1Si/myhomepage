@@ -637,7 +637,7 @@ html {
 
 .docs-main {
   flex: 1;
-  height: 100%;
+  min-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   background: white;
@@ -655,10 +655,16 @@ html {
   position: relative;
 }
 
-.doc-view {
+.doc-content-wrapper {
   flex: 1;
-  max-width: 800px;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-view {
+  max-width: 800px;
+  width: 100%;
   margin: 0;
 }
 
@@ -890,12 +896,14 @@ html {
 .doc-footer-nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
   gap: 1rem;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #e8e7e5;
+  border-top: 1px solid #f0f0f0;
+  width: 100%;
   max-width: 800px;
+  /* match .doc-view max-width */
   margin-left: auto;
   margin-right: auto;
 }
