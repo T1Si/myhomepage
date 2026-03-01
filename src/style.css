@@ -55,6 +55,19 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--primary);
+  text-decoration: none;
+}
+
+.logo-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .nav-menu {
