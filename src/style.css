@@ -49,6 +49,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
 .logo {
@@ -56,19 +57,23 @@ body {
   font-weight: 700;
   color: var(--primary);
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .logo-with-icon {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  height: 100%;
 }
 
 .logo-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   display: block;
+  flex-shrink: 0;
 }
 
 .nav-menu {
