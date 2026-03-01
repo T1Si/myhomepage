@@ -528,11 +528,12 @@ html {
   margin: 0;
   gap: 0;
   background: #ffffff;
+  padding: 0 max(0px, calc((100vw - 1200px) / 2));
 }
 
 .docs-sidebar-frame {
   flex-shrink: 0;
-  width: max(280px, calc((100vw - 1200px) / 2 + 268px));
+  width: 260px;
   height: 100%;
   background: #fafafa;
   border-right: 1px solid #f0f0f0;
@@ -545,7 +546,7 @@ html {
   height: 100%;
   background: transparent;
   box-sizing: border-box;
-  padding: 1.5rem 2rem 1.5rem max(8px, calc((100vw - 1200px) / 2 + 8px));
+  padding: 1.5rem 1rem;
   border-radius: 0;
   box-shadow: none;
   display: flex;
@@ -650,8 +651,7 @@ html {
   justify-content: flex-start;
   gap: 3rem;
   width: 100%;
-  max-width: 1200px;
-  padding: 2rem 4rem 4rem 2rem;
+  padding: 2rem 2rem 4rem 2rem;
   position: relative;
 }
 
