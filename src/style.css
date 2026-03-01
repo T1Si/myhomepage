@@ -485,6 +485,7 @@ html {
   height: 100%;
   margin: 0;
   gap: 0;
+  background: #ffffff;
 }
 
 .docs-sidebar-frame {
@@ -599,6 +600,14 @@ html {
   overflow-y: auto;
   overflow-x: hidden;
   background: white;
+  display: flex;
+  justify-content: center;
+}
+
+.docs-main-inner {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 2rem;
 }
 
 #docs-controls {
@@ -606,13 +615,17 @@ html {
   top: 0;
   background: white;
   z-index: 10;
-  padding: 1.5rem 4rem 1rem;
+  padding: 1.5rem 0 1rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid #e8e7e5;
   text-align: right;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #btn-refresh-docs {
@@ -650,10 +663,15 @@ html {
 .doc-view {
   background: white;
   border-radius: 0;
-  padding: 3rem 4rem 4rem;
+  padding: 0;
   box-shadow: none;
   min-height: calc(100% - 80px);
-  max-width: 900px;
+  max-width: 100%;
+  margin: 0;
+}
+
+.doc-view .doc-body {
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -802,7 +820,11 @@ html {
   margin-top: 3rem;
   gap: 1rem;
   padding-top: 2rem;
+  padding-bottom: 2rem;
   border-top: 1px solid #e8e7e5;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer-nav-btn {
