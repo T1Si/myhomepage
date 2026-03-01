@@ -642,7 +642,7 @@ html {
   overflow-x: hidden;
   background: white;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .docs-main-inner {
@@ -651,13 +651,14 @@ html {
   gap: 3rem;
   width: 100%;
   max-width: 1200px;
-  padding: 2rem 4rem 4rem;
+  padding: 2rem 4rem 4rem 2rem;
   position: relative;
 }
 
 .doc-content-wrapper {
   flex: 1;
   min-width: 0;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
 }
@@ -679,6 +680,7 @@ html {
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   z-index: 50;
+  margin-left: auto;
 }
 
 .toc-title {
