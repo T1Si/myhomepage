@@ -2,6 +2,7 @@ node_modules
 .git
 .DS_Store
 scripts
-docs
+/docs
 .vscode
 *.log
+!src/assets/docs
