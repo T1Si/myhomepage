@@ -73,10 +73,12 @@ body {
 }
 
 .logo-icon {
-  width: 32px;
-  height: 32px;
-  max-width: 32px;
-  max-height: 32px;
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
