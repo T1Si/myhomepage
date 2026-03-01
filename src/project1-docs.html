@@ -50,10 +50,6 @@
 
       <main class="docs-main">
         <div class="docs-main-inner">
-          <div id="docs-controls">
-            <button id="btn-refresh-docs" class="btn btn-secondary">刷新文档</button>
-            <span id="refresh-status"></span>
-          </div>
           <article id="doc-content" class="doc-view">
           </article>
 
@@ -162,25 +158,6 @@
     });
 
     initDocs();
-  </script>
-  <script>
-    async function refreshDocs() {
-      const status = document.getElementById('refresh-status');
-      status.textContent = '正在刷新...';
-      try {
-        // Reload all docs to ensure latest content from MD files
-        docContents = await DocLoader.loadAllDocs(docs);
-        loadDoc(currentIndex);
-        status.textContent = '已刷新';
-        setTimeout(() => { status.textContent = ''; }, 1500);
-      } catch (e) {
-        status.textContent = '刷新失败';
-        console.error(e);
-        setTimeout(() => { status.textContent = ''; }, 1500);
-      }
-    }
-
-    document.getElementById('btn-refresh-docs')?.addEventListener('click', refreshDocs);
   </script>
 </body>
 </html>
