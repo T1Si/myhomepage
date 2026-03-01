@@ -38,8 +38,10 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-  padding: 1rem 0;
+  padding: 0;
   height: 65px;
+  display: flex;
+  align-items: center;
 }
 
 .nav-container {
@@ -50,6 +52,7 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  width: 100%;
 }
 
 .logo {
@@ -57,23 +60,27 @@ body {
   font-weight: 700;
   color: var(--primary);
   text-decoration: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  height: auto;
 }
 
 .logo-with-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  height: 100%;
+  height: auto;
 }
 
 .logo-icon {
   width: 32px;
   height: 32px;
+  max-width: 32px;
+  max-height: 32px;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
+  vertical-align: middle;
 }
 
 .nav-menu {
