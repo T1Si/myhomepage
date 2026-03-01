@@ -511,27 +511,28 @@ html {
 }
 
 .docs-page {
-  padding-top: 65px;
-  /* Replace fixed top with padding to clear navbar */
-  min-height: 100vh;
-  background: #fdfdfd;
-  /* Provide a subtle background for the outside whitespace */
-  display: flex;
-  justify-content: center;
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .docs-layout {
   display: flex;
   height: 100%;
-  margin: 0 auto;
+  margin: 0;
   gap: 0;
-  max-width: 1200px;
   background: #ffffff;
 }
 
 .docs-sidebar-frame {
   flex-shrink: 0;
-  width: 240px;
+  width: max(280px, calc((100vw - 1200px) / 2 + 268px));
   height: 100%;
   background: #fafafa;
   border-right: 1px solid #f0f0f0;
@@ -544,7 +545,7 @@ html {
   height: 100%;
   background: transparent;
   box-sizing: border-box;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 2rem 1.5rem max(8px, calc((100vw - 1200px) / 2 + 8px));
   border-radius: 0;
   box-shadow: none;
   display: flex;
@@ -636,13 +637,12 @@ html {
 
 .docs-main {
   flex: 1;
-  min-width: 0;
   min-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   background: white;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .docs-main-inner {
@@ -650,7 +650,8 @@ html {
   justify-content: flex-start;
   gap: 3rem;
   width: 100%;
-  padding: 2rem 2rem 4rem;
+  max-width: 1200px;
+  padding: 2rem 4rem 4rem;
   position: relative;
 }
 
@@ -678,8 +679,6 @@ html {
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   z-index: 50;
-  margin-left: auto;
-  /* Push TOC to the far right of the available flex space */
 }
 
 .toc-title {
