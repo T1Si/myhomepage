@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试文档加载</title>
+  <style>
+    body {
+      font-family: monospace;
+      padding: 2rem;
+      background: #1e1e1e;
+      color: #d4d4d4;
+    }
+    .log {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      background: #2d2d2d;
+      border-left: 3px solid #4CAF50;
+    }
+    .error {
+      border-left-color: #f44336;
+    }
+    .success {
+      border-left-color: #4CAF50;
+    }
+    pre {
+      background: #2d2d2d;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 文档加载测试</h1>
+  <div id="logs"></div>
+  
+  <script>
+    const logContainer = document.getElementById('logs');
+    
+    function log(message, type = 'log') {
+      const div = document.createElement('div');
+      div.className = `log ${type}`;
+      div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      logContainer.appendChild(div);
+      console.log(message);
+    }
+    
+    async function testPath(url) {
+      log(`测试路径: ${url}`);
+      try {
+        const response = await fetch(url, { 
+          cache: 'no-cache',
+          headers: { 'Cache-Control': 'no-cache' }
+        });
+        
+        if (response.ok) {
+          const text = await response.text();
+          log(`✅ 成功! 状态: ${response.status}, 长度: ${text.length} 字符`, 'success');
+          
+          const pre = document.createElement('pre');
+          pre.textContent = text.substring(0, 200) + '...';
+          logContainer.appendChild(pre);
+          return true;
+        } else {
+          log(`❌ 失败! 状态: ${response.status} ${response.statusText}`, 'error');
+          return false;
+        }
+      } catch (e) {
+        log(`❌ 异常: ${e.message}`, 'error');
+        return false;
+      }
+    }
+    
+    async function runTests() {
+      log('开始测试文档路径...');
+      log(`当前页面: ${window.location.href}`);
+      log(`Origin: ${window.location.origin}`);
+      log(`Pathname: ${window.location.pathname}`);
+      
+      const testPaths = [
+        './assets/docs/about.md',
+        '../assets/docs/about.md',
+        '/assets/docs/about.md',
+        `${window.location.origin}/assets/docs/about.md`,
+        'assets/docs/about.md',
+      ];
+      
+      for (const path of testPaths) {
+        await testPath(path);
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+      
+      log('测试完成!', 'success');
+    }
+    
+    runTests();
+  </script>
+</body>
+</html>
