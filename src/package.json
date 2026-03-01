@@ -1,13 +1,15 @@
 {
   "name": "myhomepage",
   "version": "1.0.0",
-  "description": "",
+  "description": "Personal portfolio website",
   "main": "index.js",
   "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "dev": "echo 'Use: python -m http.server 8000' && python -m http.server 8000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["portfolio", "personal-website"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs"
 }
