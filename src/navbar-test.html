@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>导航栏测试</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 80px 20px 20px;
+      font-family: sans-serif;
+    }
+    .test-info {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+    .test-info h2 {
+      margin-top: 0;
+    }
+    .test-info code {
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+    .status.ok {
+      background: #d4edda;
+      color: #155724;
+    }
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo logo-with-icon">
+        <img src="assets/pics/xiangleme_icon_bright%201.png" alt="响了么" class="logo-icon" id="logo-img">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html#home">首页</a></li>
+        <li><a href="index.html#about">关于</a></li>
+        <li><a href="index.html#projects">作品</a></li>
+        <li><a href="index.html#contact">联系</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="test-info">
+    <h2>🔍 导航栏布局测试</h2>
+    
+    <h3>导航栏信息：</h3>
+    <ul>
+      <li>导航栏高度: <code id="navbar-height">检测中...</code></li>
+      <li>图标实际尺寸: <code id="icon-size">检测中...</code></li>
+      <li>图标显示尺寸: <code id="icon-display">检测中...</code></li>
+      <li>图标加载状态: <code id="icon-status">检测中...</code></li>
+    </ul>
+
+    <h3>布局检查：</h3>
+    <ul id="checks">
+      <li>正在检查...</li>
+    </ul>
+
+    <h3>图标预览：</h3>
+    <div style="padding: 20px; background: white; border-radius: 4px;">
+      <img src="assets/pics/xiangleme_icon_bright%201.png" alt="图标预览" style="width: 64px; height: 64px; object-fit: contain; border: 1px solid #ddd;">
+      <p style="margin-top: 10px; font-size: 14px; color: #666;">64x64px 预览</p>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      const navbar = document.querySelector('.navbar');
+      const icon = document.getElementById('logo-img');
+      const checks = [];
+
+      // 检查导航栏高度
+      const navbarHeight = navbar.offsetHeight;
+      document.getElementById('navbar-height').textContent = navbarHeight + 'px';
+      checks.push({
+        text: '导航栏高度',
+        ok: navbarHeight === 65,
+        detail: `期望 65px, 实际 ${navbarHeight}px`
+      });
+
+      // 检查图标尺寸
+      const iconWidth = icon.offsetWidth;
+      const iconHeight = icon.offsetHeight;
+      document.getElementById('icon-display').textContent = `${iconWidth}x${iconHeight}px`;
+      checks.push({
+        text: '图标显示尺寸',
+        ok: iconWidth === 32 && iconHeight === 32,
+        detail: `期望 32x32px, 实际 ${iconWidth}x${iconHeight}px`
+      });
+
+      // 检查图标加载
+      if (icon.complete && icon.naturalWidth > 0) {
+        document.getElementById('icon-status').textContent = '✅ 已加载';
+        document.getElementById('icon-size').textContent = `${icon.naturalWidth}x${icon.naturalHeight}px`;
+        checks.push({
+          text: '图标加载',
+          ok: true,
+          detail: `原始尺寸 ${icon.naturalWidth}x${icon.naturalHeight}px`
+        });
+      } else {
+        document.getElementById('icon-status').textContent = '❌ 加载失败';
+        document.getElementById('icon-size').textContent = '无法获取';
+        checks.push({
+          text: '图标加载',
+          ok: false,
+          detail: '图片文件可能不存在或路径错误'
+        });
+      }
+
+      // 检查图标是否超出导航栏
+      const iconRect = icon.getBoundingClientRect();
+      const navbarRect = navbar.getBoundingClientRect();
+      const iconOverflow = iconRect.bottom > navbarRect.bottom || iconRect.top < navbarRect.top;
+      checks.push({
+        text: '图标位置',
+        ok: !iconOverflow,
+        detail: iconOverflow ? '图标超出导航栏范围' : '图标在导航栏范围内'
+      });
+
+      // 显示检查结果
+      const checksList = document.getElementById('checks');
+      checksList.innerHTML = checks.map(check => `
+        <li>
+          ${check.text}: 
+          <span class="status ${check.ok ? 'ok' : 'error'}">
+            ${check.ok ? '✓ 通过' : '✗ 失败'}
+          </span>
+          <br>
+          <small style="color: #666;">${check.detail}</small>
+        </li>
+      `).join('');
+    });
+  </script>
+</body>
+</html>
