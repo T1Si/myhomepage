@@ -532,7 +532,7 @@ html {
 
 .docs-sidebar-frame {
   flex-shrink: 0;
-  width: max(280px, calc((100vw - 1200px) / 2 + 280px));
+  width: max(280px, calc((100vw - 1200px) / 2 + 268px));
   height: 100%;
   background: #fafafa;
   border-right: 1px solid #f0f0f0;
@@ -545,7 +545,7 @@ html {
   height: 100%;
   background: transparent;
   box-sizing: border-box;
-  padding: 1.5rem 2rem 1.5rem max(20px, calc((100vw - 1200px) / 2 + 20px));
+  padding: 1.5rem 2rem 1.5rem max(8px, calc((100vw - 1200px) / 2 + 8px));
   border-radius: 0;
   box-shadow: none;
   display: flex;
