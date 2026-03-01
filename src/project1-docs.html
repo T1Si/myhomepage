@@ -53,6 +53,13 @@
           <article id="doc-content" class="doc-view">
           </article>
 
+          <aside class="doc-toc">
+            <div class="toc-title">页面导航</div>
+            <nav id="toc-nav" class="toc-nav">
+              <!-- 动态生成 -->
+            </nav>
+          </aside>
+
           <div class="doc-footer-nav">
             <a href="#" class="footer-nav-btn prev" id="nav-prev">
               <span class="nav-btn-arrow">←</span>
@@ -117,6 +124,9 @@
       
       document.getElementById('doc-content').innerHTML = `<div class="doc-body">${content}</div>`;
       
+      // 生成目录
+      generateTOC();
+      
       document.querySelectorAll('.tree-item').forEach(item => {
         item.classList.remove('active');
         if (item.dataset.doc === doc.id) {
@@ -127,6 +137,76 @@
       updateNavButtons(index);
       
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function generateTOC() {
+      const docBody = document.querySelector('.doc-body');
+      const headings = docBody.querySelectorAll('h2, h3');
+      const tocNav = document.getElementById('toc-nav');
+      
+      if (headings.length === 0) {
+        tocNav.innerHTML = '<div class="toc-empty">此文档无标题</div>';
+        return;
+      }
+      
+      let tocHTML = '';
+      headings.forEach((heading, index) => {
+        const id = `heading-${index}`;
+        heading.id = id;
+        
+        const level = heading.tagName === 'H2' ? 'toc-h2' : 'toc-h3';
+        const text = heading.textContent;
+        
+        tocHTML += `<a href="#${id}" class="toc-link ${level}" data-target="${id}">${text}</a>`;
+      });
+      
+      tocNav.innerHTML = tocHTML;
+      
+      // 添加点击事件
+      document.querySelectorAll('.toc-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.dataset.target;
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            const docsMain = document.querySelector('.docs-main');
+            const offsetTop = targetElement.offsetTop - 20;
+            docsMain.scrollTo({ top: offsetTop, behavior: 'smooth' });
+            
+            // 更新活动状态
+            document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+          }
+        });
+      });
+      
+      // 监听滚动，高亮当前章节
+      observeHeadings();
+    }
+
+    function observeHeadings() {
+      const docsMain = document.querySelector('.docs-main');
+      const headings = document.querySelectorAll('.doc-body h2, .doc-body h3');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.dataset.target === id) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, {
+        root: docsMain,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+      });
+      
+      headings.forEach(heading => observer.observe(heading));
     }
 
     function updateNavButtons(index) {
