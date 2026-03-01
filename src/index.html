@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的个人作品集</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Portfolio</div>
+      <ul class="nav-menu">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#about">关于</a></li>
+        <li><a href="#projects">作品</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>你好，我是 <span class="highlight">开发者</span></h1>
+      <p class="subtitle">专注于创造优雅的数字体验</p>
+      <p class="description">热爱编程，追求代码之美，用技术构建未来</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">查看作品</a>
+        <a href="#contact" class="btn btn-secondary">联系我</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">关于我</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>我是一名热爱技术的开发者，专注于构建现代化的 Web 应用程序。我相信优秀的产品源于对细节的执着和对用户体验的深刻理解。</p>
+          <p>我的技术栈包括前端开发、后端服务以及数据库设计。我喜欢学习新技术，并将其应用到实际项目中，创造出有价值的产品。</p>
+          <div class="skills">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">数据库</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2 class="section-title">我的作品</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon">🚀</div>
+          <h3>项目一</h3>
+          <p class="project-desc">一个现代化的 Web 应用程序，提供优秀的用户体验</p>
+          <a href="project1.html" class="project-link">查看详情 →</a>
+        </div>
+        <div class="project-card">
+          <div class="project-icon">💡</div>
+          <h3>项目二</h3>
+          <p class="project-desc">创新的解决方案，解决实际问题</p>
+          <a href="#" class="project-link">查看详情 →</a>
+        </div>
+        <div class="project-card">
+          <div class="project-icon">🎨</div>
+          <h3>项目三</h3>
+          <p class="project-desc">精美设计的界面，注重用户交互</p>
+          <a href="#" class="project-link">查看详情 →</a>
+        </div>
+        <div class="project-card">
+          <div class="project-icon">⚡</div>
+          <h3>项目四</h3>
+          <p class="project-desc">高性能的应用，快速响应</p>
+          <a href="#" class="project-link">查看详情 →</a>
+        </div>
+        <div class="project-card">
+          <div class="project-icon">🔧</div>
+          <h3>项目五</h3>
+          <p class="project-desc">实用的工具，提升工作效率</p>
+          <a href="#" class="project-link">查看详情 →</a>
+        </div>
+        <div class="project-card">
+          <div class="project-icon">📱</div>
+          <h3>项目六</h3>
+          <p class="project-desc">响应式设计，适配各种设备</p>
+          <a href="#" class="project-link">查看详情 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">联系我</h2>
+      <div class="contact-content">
+        <p class="contact-text">有项目想法或合作机会？欢迎随时联系我</p>
+        <div class="contact-links">
+          <a href="mailto:your@email.com" class="contact-item">
+            <span class="contact-icon">📧</span>
+            your@email.com
+          </a>
+          <a href="https://github.com/yourusername" class="contact-item" target="_blank">
+            <span class="contact-icon">🐙</span>
+            GitHub
+          </a>
+          <a href="https://linkedin.com/in/yourprofile" class="contact-item" target="_blank">
+            <span class="contact-icon">💼</span>
+            LinkedIn
+          </a>
+          <a href="https://twitter.com/yourusername" class="contact-item" target="_blank">
+            <span class="contact-icon">🐦</span>
+            Twitter
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 我的作品集. 保留所有权利.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

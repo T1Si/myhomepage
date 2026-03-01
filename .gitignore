@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+# Python/Temp
+__pycache__/
+*.pyc
+*.log
+# Node modules (if used in future)
+node_modules/
+# IDE/Editor
+.vscode/
+.idea/
+# Logs
+logs/
+*.log
