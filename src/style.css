@@ -647,6 +647,13 @@ html {
   overflow-x: hidden;
   background: white;
   display: block;
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.docs-main::-webkit-scrollbar {
+  display: none;
 }
 
 .docs-main-inner {
