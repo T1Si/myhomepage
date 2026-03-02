@@ -142,7 +142,7 @@
 
     function generateTOC() {
       const docBody = document.querySelector('.doc-body');
-      const headings = docBody.querySelectorAll('h2, h3');
+      const headings = docBody.querySelectorAll('h2');
       const tocNav = document.getElementById('toc-nav');
 
       if (headings.length === 0) {
@@ -187,7 +187,7 @@
 
     function observeHeadings() {
       const docsMain = document.querySelector('.docs-main');
-      const headings = document.querySelectorAll('.doc-body h2, .doc-body h3');
+      const headings = document.querySelectorAll('.doc-body h2');
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
