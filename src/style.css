@@ -663,7 +663,7 @@ html {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 2rem 2rem 4rem 2rem;
+  padding: 2rem 2rem 8rem 2rem;
   position: relative;
 }
 
@@ -914,7 +914,7 @@ html {
   justify-content: space-between;
   gap: 1rem;
   margin-top: 4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   padding-top: 2rem;
   border-top: 1px solid #f0f0f0;
   width: 100%;
