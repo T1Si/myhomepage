@@ -3,6 +3,12 @@
   "outputDirectory": "src",
   "cleanUrls": false,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/xiangleme-docs/:path*",
+      "destination": "/project1-docs.html"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/docs/(.*).md",
