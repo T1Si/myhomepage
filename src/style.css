@@ -49,8 +49,6 @@ body.docs-body {
 }
 
 .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
@@ -532,7 +530,7 @@ html {
   margin: 0;
   gap: 0;
   background: #ffffff;
-  padding: 0 max(0px, calc((100vw - 1200px) / 2));
+  padding: 0;
 }
 
 .docs-sidebar-frame {
