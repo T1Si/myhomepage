@@ -4,11 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>响了么文档中心</title>
   <link rel="stylesheet" href="style.css?v=17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    // 自动缓存破坏：检查 URL 是否有时间戳参数，如果没有则添加并重新加载
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const hasTimestamp = urlParams.has('_t');
+      
+      // 如果 URL 中没有时间戳参数，添加并重新加载
+      if (!hasTimestamp) {
+        const timestamp = Date.now();
+        const newUrl = window.location.pathname + '?_t=' + timestamp + window.location.hash;
+        window.location.replace(newUrl);
+      }
+    })();
+  </script>
 </head>
 
 <body class="docs-body">
@@ -400,7 +417,7 @@
 
     initDocs();
   </script>
-  <!-- Version: 2026-03-09-v4 -->
+  <!-- Version: 2026-03-09-v5-auto-refresh -->
 </body>
 
 </html>
