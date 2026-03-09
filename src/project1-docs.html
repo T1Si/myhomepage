@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>响了么文档中心</title>
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css?v=16">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -236,6 +236,8 @@
       const docsMain = document.querySelector('.docs-main');
       const headings = document.querySelectorAll('.doc-body h2');
 
+      console.log('Setting up heading observer, found headings:', headings.length);
+
       if (headings.length === 0) return;
 
       // 使用 IntersectionObserver 监听标题进入视口
@@ -250,6 +252,8 @@
           });
           
           const id = topEntry.target.id;
+          console.log('Active heading changed to:', id);
+          
           document.querySelectorAll('.toc-link').forEach(link => {
             link.classList.remove('active');
             if (link.dataset.target === id) {
@@ -287,6 +291,8 @@
 
             if (closestHeading) {
               const id = closestHeading.id;
+              console.log('Fallback: setting active heading to:', id);
+              
               document.querySelectorAll('.toc-link').forEach(link => {
                 link.classList.remove('active');
                 if (link.dataset.target === id) {
@@ -397,14 +403,22 @@
             setTimeout(() => {
               const activeLink = document.querySelector('.toc-nav .toc-link.active');
               const tocNav = document.querySelector('.toc-nav');
-              if (activeLink && tocNav) {
+              const docToc = document.querySelector('.doc-toc');
+              
+              console.log('TOC opened, active link:', activeLink);
+              console.log('TOC nav element:', tocNav);
+              console.log('DOC toc element:', docToc);
+              
+              if (activeLink && docToc) {
                 // 计算需要滚动的位置，让高亮项显示在可视区域中间
                 const linkOffsetTop = activeLink.offsetTop;
-                const tocNavHeight = tocNav.clientHeight;
+                const docTocHeight = docToc.clientHeight;
                 const linkHeight = activeLink.offsetHeight;
-                const scrollPosition = linkOffsetTop - (tocNavHeight / 2) + (linkHeight / 2);
+                const scrollPosition = linkOffsetTop - (docTocHeight / 2) + (linkHeight / 2);
                 
-                tocNav.scrollTo({
+                console.log('Scrolling to position:', scrollPosition);
+                
+                docToc.scrollTo({
                   top: Math.max(0, scrollPosition),
                   behavior: 'smooth'
                 });
@@ -421,7 +435,7 @@
 
     initDocs();
   </script>
-  <!-- Version: 2026-03-09-v1 -->
+  <!-- Version: 2026-03-09-v3-debug -->
 </body>
 
 </html>
