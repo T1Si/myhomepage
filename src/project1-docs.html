@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>响了么文档中心</title>
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -214,8 +214,12 @@
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
             const docsMain = document.querySelector('.docs-main');
-            const offsetTop = targetElement.offsetTop - 20;
-            docsMain.scrollTo({ top: offsetTop, behavior: 'smooth' });
+            // 使用相对于容器的坐标计算
+            const targetPos = targetElement.getBoundingClientRect().top;
+            const containerPos = docsMain.getBoundingClientRect().top;
+            const scrollTarget = docsMain.scrollTop + targetPos - containerPos - 20;
+
+            docsMain.scrollTo({ top: scrollTarget, behavior: 'smooth' });
 
             // 更新活动状态
             document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
@@ -358,8 +362,23 @@
 
     if (toolbarToc) {
       toolbarToc.addEventListener('click', () => {
-        document.body.classList.toggle('toc-active');
+        const isActive = document.body.classList.toggle('toc-active');
         document.body.classList.remove('sidebar-active');
+
+        // 自动定位到当前高亮的目录项
+        if (isActive) {
+          setTimeout(() => {
+            const activeLink = document.querySelector('.toc-nav .toc-link.active');
+            const tocContainer = document.querySelector('.doc-toc');
+            if (activeLink && tocContainer) {
+              const linkRect = activeLink.getBoundingClientRect();
+              const containerRect = tocContainer.getBoundingClientRect();
+              if (linkRect.top < containerRect.top || linkRect.bottom > containerRect.bottom) {
+                activeLink.scrollIntoView({ block: 'center', behavior: 'smooth' });
+              }
+            }
+          }, 300);
+        }
       });
     }
 

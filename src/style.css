@@ -1168,9 +1168,6 @@ body.sidebar-active .sidebar-overlay {
   body.sidebar-active,
   body.toc-active {
     overflow: hidden !important;
-    position: fixed;
-    width: 100%;
-    height: 100%;
   }
 
   .docs-sidebar {
