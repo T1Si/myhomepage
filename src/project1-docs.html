@@ -201,6 +201,12 @@
 
       tocNav.innerHTML = tocHTML;
 
+      // 默认高亮第一个标题
+      const firstLink = tocNav.querySelector('.toc-link');
+      if (firstLink) {
+        firstLink.classList.add('active');
+      }
+
       // 添加点击事件
       document.querySelectorAll('.toc-link').forEach(link => {
         link.addEventListener('click', function (e) {
@@ -230,25 +236,67 @@
       const docsMain = document.querySelector('.docs-main');
       const headings = document.querySelectorAll('.doc-body h2');
 
+      if (headings.length === 0) return;
+
+      // 使用 IntersectionObserver 监听标题进入视口
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            document.querySelectorAll('.toc-link').forEach(link => {
-              link.classList.remove('active');
-              if (link.dataset.target === id) {
-                link.classList.add('active');
-              }
-            });
-          }
-        });
+        // 找到所有正在显示的标题
+        const visibleEntries = entries.filter(entry => entry.isIntersecting);
+        
+        if (visibleEntries.length > 0) {
+          // 选择最靠近顶部的标题
+          const topEntry = visibleEntries.reduce((prev, curr) => {
+            return curr.boundingClientRect.top < prev.boundingClientRect.top ? curr : prev;
+          });
+          
+          const id = topEntry.target.id;
+          document.querySelectorAll('.toc-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.target === id) {
+              link.classList.add('active');
+            }
+          });
+        }
       }, {
         root: docsMain,
         rootMargin: '-20% 0px -70% 0px',
-        threshold: 0
+        threshold: [0, 0.25, 0.5, 0.75, 1]
       });
 
       headings.forEach(heading => observer.observe(heading));
+
+      // 添加滚动事件监听，用于处理边界情况
+      let scrollTimeout;
+      docsMain.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          // 如果没有标题在视口中，手动查找最近的标题
+          const activeLink = document.querySelector('.toc-link.active');
+          if (!activeLink) {
+            const scrollTop = docsMain.scrollTop;
+            let closestHeading = null;
+            let minDistance = Infinity;
+
+            headings.forEach(heading => {
+              const distance = Math.abs(heading.offsetTop - scrollTop);
+              if (distance < minDistance) {
+                minDistance = distance;
+                closestHeading = heading;
+              }
+            });
+
+            if (closestHeading) {
+              const id = closestHeading.id;
+              document.querySelectorAll('.toc-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.target === id) {
+                  link.classList.add('active');
+                }
+              });
+            }
+          }
+        }, 100);
+      });
     }
 
     function updateNavButtons(index) {
@@ -344,17 +392,25 @@
 
         // 自动定位到当前高亮的目录项
         if (isActive) {
-          setTimeout(() => {
-            const activeLink = document.querySelector('.toc-nav .toc-link.active');
-            const tocContainer = document.querySelector('.doc-toc');
-            if (activeLink && tocContainer) {
-              const linkRect = activeLink.getBoundingClientRect();
-              const containerRect = tocContainer.getBoundingClientRect();
-              if (linkRect.top < containerRect.top || linkRect.bottom > containerRect.bottom) {
-                activeLink.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          // 使用 requestAnimationFrame 确保 DOM 更新完成后再滚动
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              const activeLink = document.querySelector('.toc-nav .toc-link.active');
+              const tocNav = document.querySelector('.toc-nav');
+              if (activeLink && tocNav) {
+                // 计算需要滚动的位置，让高亮项显示在可视区域中间
+                const linkOffsetTop = activeLink.offsetTop;
+                const tocNavHeight = tocNav.clientHeight;
+                const linkHeight = activeLink.offsetHeight;
+                const scrollPosition = linkOffsetTop - (tocNavHeight / 2) + (linkHeight / 2);
+                
+                tocNav.scrollTo({
+                  top: Math.max(0, scrollPosition),
+                  behavior: 'smooth'
+                });
               }
-            }
-          }, 300);
+            }, 100);
+          });
         }
       });
     }
