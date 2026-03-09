@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>响了么文档中心</title>
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -189,11 +189,6 @@
 
       let tocHTML = '';
 
-      // 只有移动端显示“回到顶部”
-      if (window.innerWidth <= 1024) {
-        tocHTML += `<a href="#" class="toc-link toc-h2 back-to-top" id="toc-back-to-top">回到顶部</a>`;
-      }
-
       headings.forEach((heading, index) => {
         const id = `heading-${index}`;
         heading.id = id;
@@ -213,13 +208,7 @@
           const targetId = this.dataset.target;
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
-            const docsMain = document.querySelector('.docs-main');
-            // 使用相对于容器的坐标计算
-            const targetPos = targetElement.getBoundingClientRect().top;
-            const containerPos = docsMain.getBoundingClientRect().top;
-            const scrollTarget = docsMain.scrollTop + targetPos - containerPos - 20;
-
-            docsMain.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             // 更新活动状态
             document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
@@ -232,18 +221,6 @@
           }
         });
       });
-
-      // 回到顶部点击事件
-      const backToTopBtn = document.getElementById('toc-back-to-top');
-      if (backToTopBtn) {
-        backToTopBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          docsMain.scrollTo({ top: 0, behavior: 'smooth' });
-          if (window.innerWidth <= 1024) {
-            document.body.classList.remove('toc-active');
-          }
-        });
-      }
 
       // 监听滚动，高亮当前章节
       observeHeadings();
