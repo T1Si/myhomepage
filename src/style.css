@@ -1146,6 +1146,18 @@ body.sidebar-active .sidebar-overlay {
     display: none;
   }
 
+  /* 移动端悬浮卡片中移除高亮样式 */
+  .doc-toc .toc-link.active {
+    color: #787774;
+    font-weight: 400;
+    border-left-color: transparent;
+    background: transparent;
+  }
+
+  .doc-toc .toc-link:active {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
   .toc-link.back-to-top {
     color: #2383e2;
     font-weight: 600;

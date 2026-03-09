@@ -8,7 +8,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>响了么文档中心</title>
-  <link rel="stylesheet" href="style.css?v=17">
+  <link rel="stylesheet" href="style.css?v=18">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -415,9 +415,21 @@
       sidebarOverlay.addEventListener('click', closeAllDrawers);
     }
 
+    // 点击 TOC 卡片外部区域关闭卡片
+    document.addEventListener('click', (e) => {
+      const tocPanel = document.querySelector('.doc-toc');
+      const toolbarTocBtn = document.getElementById('toolbar-toc');
+      const isTocActive = document.body.classList.contains('toc-active');
+      
+      // 如果 TOC 是打开的，且点击的不是 TOC 面板内部，也不是打开按钮
+      if (isTocActive && tocPanel && !tocPanel.contains(e.target) && !toolbarTocBtn.contains(e.target)) {
+        document.body.classList.remove('toc-active');
+      }
+    });
+
     initDocs();
   </script>
-  <!-- Version: 2026-03-09-v5-auto-refresh -->
+  <!-- Version: 2026-03-09-v6 -->
 </body>
 
 </html>
