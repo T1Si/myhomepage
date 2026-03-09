@@ -1124,8 +1124,9 @@ body.sidebar-active .sidebar-overlay {
     position: fixed;
     top: 120px;
     right: 16px;
-    width: calc(100% - 32px);
-    max-width: 400px;
+    width: auto;
+    min-width: 140px;
+    max-width: 85vw;
     height: auto;
     max-height: calc(100vh - 160px);
     z-index: 1001;
@@ -1141,6 +1142,10 @@ body.sidebar-active .sidebar-overlay {
     visibility: hidden;
   }
 
+  .doc-toc .toc-title {
+    display: none;
+  }
+
   .toc-link.back-to-top {
     color: #2383e2;
     font-weight: 600;
@@ -1153,7 +1158,8 @@ body.sidebar-active .sidebar-overlay {
 
   body.sidebar-active .docs-sidebar-frame,
   body.toc-active .doc-toc {
-    transform: translateX(0) scale(1);
+    transform: translateY(0) scale(1);
+    /* Changed from translateX for the card effect */
     opacity: 1;
     visibility: visible;
   }
