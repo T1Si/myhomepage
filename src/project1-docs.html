@@ -19,8 +19,18 @@
           style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; object-fit: contain; display: block;">
         <span>响了么</span>
       </a>
+      <button class="mobile-toggle" id="sidebar-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </nav>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
   <section class="docs-page">
     <div class="docs-layout">
@@ -139,6 +149,11 @@
       updateNavButtons(index);
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // 在移动端加载文档后关闭侧边栏
+      if (window.innerWidth <= 1024) {
+        document.body.classList.remove('sidebar-active');
+      }
     }
 
     function generateTOC() {
@@ -271,6 +286,22 @@
         }
       }
     });
+
+    // 移动端侧边栏切换逻辑
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    if (sidebarToggle) {
+      sidebarToggle.addEventListener('click', () => {
+        document.body.classList.toggle('sidebar-active');
+      });
+    }
+
+    if (sidebarOverlay) {
+      sidebarOverlay.addEventListener('click', () => {
+        document.body.classList.remove('sidebar-active');
+      });
+    }
 
     initDocs();
   </script>
