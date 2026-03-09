@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>响了么文档中心</title>
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
           style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; object-fit: contain; display: block;">
         <span>响了么</span>
       </a>
-      <button class="mobile-toggle" id="sidebar-toggle" aria-label="Menu">
+      <button class="mobile-toggle" id="sidebar-toggle" aria-label="Menu" style="display: none;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -29,6 +29,25 @@
       </button>
     </div>
   </nav>
+
+  <div class="mobile-toolbar">
+    <button class="toolbar-btn" id="toolbar-menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <span>菜单</span>
+    </button>
+    <button class="toolbar-btn" id="toolbar-toc">
+      <span>页面导航</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
+        stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
 
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
@@ -153,6 +172,7 @@
       // 在移动端加载文档后关闭侧边栏
       if (window.innerWidth <= 1024) {
         document.body.classList.remove('sidebar-active');
+        document.body.classList.remove('toc-active');
       }
     }
 
@@ -193,6 +213,11 @@
             // 更新活动状态
             document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
             this.classList.add('active');
+
+            // 移动端点击目录后关闭目录抽屉
+            if (window.innerWidth <= 1024) {
+              document.body.classList.remove('toc-active');
+            }
           }
         });
       });
@@ -289,18 +314,38 @@
 
     // 移动端侧边栏切换逻辑
     const sidebarToggle = document.getElementById('sidebar-toggle');
+    const toolbarMenu = document.getElementById('toolbar-menu');
+    const toolbarToc = document.getElementById('toolbar-toc');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    const closeAllDrawers = () => {
+      document.body.classList.remove('sidebar-active');
+      document.body.classList.remove('toc-active');
+    };
 
     if (sidebarToggle) {
       sidebarToggle.addEventListener('click', () => {
         document.body.classList.toggle('sidebar-active');
+        document.body.classList.remove('toc-active');
+      });
+    }
+
+    if (toolbarMenu) {
+      toolbarMenu.addEventListener('click', () => {
+        document.body.classList.toggle('sidebar-active');
+        document.body.classList.remove('toc-active');
+      });
+    }
+
+    if (toolbarToc) {
+      toolbarToc.addEventListener('click', () => {
+        document.body.classList.toggle('toc-active');
+        document.body.classList.remove('sidebar-active');
       });
     }
 
     if (sidebarOverlay) {
-      sidebarOverlay.addEventListener('click', () => {
-        document.body.classList.remove('sidebar-active');
-      });
+      sidebarOverlay.addEventListener('click', closeAllDrawers);
     }
 
     initDocs();

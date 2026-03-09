@@ -724,8 +724,51 @@ body.sidebar-active .sidebar-overlay {
   max-width: 800px;
   width: 100%;
   margin: 0;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  /* Changed from anywhere */
+  word-break: normal;
+  /* Better for standard text */
+}
+
+.mobile-toolbar {
+  display: none;
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  z-index: 900;
+  padding: 0 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #787774;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.toolbar-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.toolbar-btn span {
+  line-height: 1;
+}
+
+.toolbar-btn:hover {
+  color: #37352f;
 }
 
 .doc-toc {
@@ -979,7 +1022,7 @@ body.sidebar-active .sidebar-overlay {
   text-decoration: none;
   transition: all 0.15s ease;
   flex: 1;
-  max-width: 45%;
+  max-width: none;
 }
 
 .footer-nav-btn:hover {
@@ -1036,7 +1079,9 @@ body.sidebar-active .sidebar-overlay {
   .docs-page {
     position: static;
     height: auto;
-    min-height: calc(100vh - 65px);
+    min-height: calc(100vh - 113px);
+    margin-top: 48px;
+    /* For mobile-toolbar */
   }
 
   body.docs-body {
@@ -1049,22 +1094,41 @@ body.sidebar-active .sidebar-overlay {
     height: auto;
   }
 
-  .docs-sidebar-frame {
+  .docs-sidebar-frame,
+  .doc-toc {
     position: fixed;
     top: 65px;
-    left: 0;
     bottom: 0;
     width: 280px;
     height: calc(100vh - 65px);
     z-index: 1001;
-    transform: translateX(-100%);
+    background: #fafafa;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-right: 1px solid #e8e7e5;
     box-shadow: 10px 0 30px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    /* Prevent interaction when hidden */
   }
 
-  body.sidebar-active .docs-sidebar-frame {
+  .docs-sidebar-frame {
+    left: 0;
+    transform: translateX(-100%);
+    border-right: 1px solid #e8e7e5;
+  }
+
+  .doc-toc {
+    right: 0;
+    transform: translateX(100%);
+    border-left: 1px solid #e8e7e5;
+    padding: 1.5rem 1rem;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+  }
+
+  body.sidebar-active .docs-sidebar-frame,
+  body.toc-active .doc-toc {
     transform: translateX(0);
+    visibility: visible;
   }
 
   .docs-sidebar {
@@ -1078,20 +1142,39 @@ body.sidebar-active .sidebar-overlay {
     overflow-y: visible;
   }
 
-  .doc-toc {
-    display: none;
-  }
-
-  .mobile-toggle {
+  .mobile-toolbar {
     display: flex;
   }
 
+  .mobile-toggle {
+    display: none !important;
+  }
+
+  /* Handle content adaptation */
+  .docs-main-spacer {
+    display: none !important;
+  }
+
+  .docs-main-inner {
+    padding: 1.5rem 16px 6rem 16px;
+    display: block;
+    /* Ensure it's not flex anymore */
+  }
+
+  .doc-content-wrapper {
+    margin: 0;
+    flex: 1;
+    max-width: 100%;
+    width: 100%;
+  }
+
   .doc-view {
-    padding: 2rem 1.5rem;
+    padding: 1rem 0;
+    max-width: 100%;
   }
 
   .doc-view h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .doc-view h2 {
@@ -1099,11 +1182,17 @@ body.sidebar-active .sidebar-overlay {
   }
 
   .doc-footer-nav {
-    flex-direction: column;
+    flex-direction: row;
+    /* Keep row but adjust button content */
+    gap: 0.5rem;
   }
 
   .footer-nav-btn {
-    max-width: 100%;
+    padding: 0.75rem;
+  }
+
+  .footer-nav-btn .nav-btn-title {
+    font-size: 0.8125rem;
   }
 }
 
