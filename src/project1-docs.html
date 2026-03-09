@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>响了么文档中心</title>
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -42,9 +42,9 @@
     </button>
     <button class="toolbar-btn" id="toolbar-toc">
       <span>页面导航</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
         stroke-linejoin="round">
-        <polyline points="9 18 15 12 9 6"></polyline>
+        <polyline points="6 9 12 15 18 9"></polyline>
       </svg>
     </button>
   </div>
@@ -180,6 +180,7 @@
       const docBody = document.querySelector('.doc-body');
       const headings = docBody.querySelectorAll('h2');
       const tocNav = document.getElementById('toc-nav');
+      const docsMain = document.querySelector('.docs-main');
 
       if (headings.length === 0) {
         tocNav.innerHTML = '<div class="toc-empty">此文档无标题</div>';
@@ -187,6 +188,12 @@
       }
 
       let tocHTML = '';
+
+      // 只有移动端显示“回到顶部”
+      if (window.innerWidth <= 1024) {
+        tocHTML += `<a href="#" class="toc-link toc-h2 back-to-top" id="toc-back-to-top">回到顶部</a>`;
+      }
+
       headings.forEach((heading, index) => {
         const id = `heading-${index}`;
         heading.id = id;
@@ -221,6 +228,18 @@
           }
         });
       });
+
+      // 回到顶部点击事件
+      const backToTopBtn = document.getElementById('toc-back-to-top');
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          docsMain.scrollTo({ top: 0, behavior: 'smooth' });
+          if (window.innerWidth <= 1024) {
+            document.body.classList.remove('toc-active');
+          }
+        });
+      }
 
       // 监听滚动，高亮当前章节
       observeHeadings();
