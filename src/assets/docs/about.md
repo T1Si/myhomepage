@@ -10,14 +10,14 @@
 
 ## 产品特点
 
-- 多种提醒方式：铃声、震动、通知
-- 智能提醒：根据用户习惯提供最佳提醒时间
-- 跨平台同步：支持手机、平板、电脑多端同步
+- 智能识别节假日调休：
+- 自定义闹钟铃声：
+- 跨设备同步：支持 iCloud 同步闹钟配置数据
 - 简洁界面：专注于核心功能，操作简单直观
 
 ## 联系我们
 
 如有任何问题或建议，欢迎通过以下方式联系我们：
 
-- 邮箱：support@xiangle.me
-- 微博：@响了么
+- 联系邮箱：deeptry_contact@163.com
+- 小红书：[DeepTry](https://www.xiaohongshu.com/user/profile/67fa3a1e000000000a03c591?xsec_token=YBPS5uYGuWTE6_4EOG34d_JGQg5uvSzcC1uxDzlI7YlDE=&xsec_source=app_share&xhsshare=CopyLink&shareRedId=OD1IQTZGNU42NzUyOTgwNjZEOTpHOj86&apptime=1769330973&share_id=5f007c07f5bb491aa7ac62e90019bdc0)

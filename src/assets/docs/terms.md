@@ -24,7 +24,8 @@
 - 智能重复规则：支持工作日、周末、自定义重复等
 - 自定义铃声：选择不同的闹钟铃声
 - 闹钟管理：批量管理和组织闹钟
-- PRO 订阅服务：提供 iCloud 同步、无限闹钟等高级功能
+- Widget 小组件：在主屏幕快速查看闹钟信息
+- PRO 订阅服务：提供 iCloud 同步、自定义铃声导入、特殊重复模式等高级功能
 
 ### 1.2 服务使用要求
 
@@ -102,15 +103,22 @@
 ### 4.1 PRO 订阅
 
 - **订阅方式**：通过 App Store 内购
-- **订阅类型**：一次性买断制
-- **订阅权益**：iCloud 同步、无限闹钟、自定义铃声等
+- **订阅类型**：一次性买断制（终身有效）
+- **订阅权益**：
+  - iCloud 跨设备同步
+  - 高级闹钟重复模式（月末周六、大小周等）
+  - 自定义铃声导入
+  - 无限制使用所有高级功能
+- **免费试用**：非订阅用户可免费试用高级闹钟模式 5 次
 - **订阅费用**：以 App Store 显示的价格为准
 
 ### 4.2 支付和退款
 
 - 订阅费用通过 Apple ID 账户扣款
+- 所有交易由 Apple 处理，我们不直接处理支付信息
 - 退款政策遵循 Apple App Store 的退款政策
 - 具体退款流程请参考 Apple 官方指引
+- **恢复购买**：您可以在应用内通过"恢复购买"功能恢复已购买的订阅
 
 ### 4.3 订阅变更
 
@@ -238,7 +246,7 @@
 如果您对本协议有任何疑问，请通过以下方式联系我们：
 
 - **邮箱**：deeptry_contact@163.com
-- **小红书**：https://xhslink.com/m/8AZtOCviM4u
+- **小红书**：[DeepTry](https://www.xiaohongshu.com/user/profile/67fa3a1e000000000a03c591?xsec_token=YBPS5uYGuWTE6_4EOG34d_JGQg5uvSzcC1uxDzlI7YlDE=&xsec_source=app_share&xhsshare=CopyLink&shareRedId=OD1IQTZGNU42NzUyOTgwNjZEOTpHOj86&apptime=1769330973&share_id=5f007c07f5bb491aa7ac62e90019bdc0)
 
 **再次感谢您选择使用响了么！**
 
