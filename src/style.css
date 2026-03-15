@@ -16,18 +16,6 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-[data-theme="dark"] {
-  --primary: #818cf8;
-  --primary-dark: #6366f1;
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --bg-primary: #111827;
-  --bg-secondary: #1f2937;
-  --border-color: #374151;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-}
-
 html[data-theme="dark"] {
   --primary: #818cf8;
   --primary-dark: #6366f1;
@@ -74,12 +62,6 @@ body.docs-body {
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-[data-theme="dark"] .navbar {
-  background: rgba(17, 24, 39, 0.7);
-  border-bottom: 1px solid rgba(55, 65, 81, 0.5);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 html[data-theme="dark"] .navbar {
@@ -1617,4 +1599,219 @@ html[data-theme="dark"] .toolbar-btn:hover {
 
 html[data-theme="dark"] .sidebar-overlay {
   background: rgba(0, 0, 0, 0.6);
+}
+
+
+/* ===== 完整的深色模式样式 ===== */
+html[data-theme="dark"] body {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .hero {
+  background-color: #111827;
+}
+
+html[data-theme="dark"] .about {
+  background-color: #1f2937;
+}
+
+html[data-theme="dark"] .projects {
+  background: linear-gradient(180deg, #3b4a6b 0%, #4a5f8f 50%, #5a7aaf 100%);
+}
+
+html[data-theme="dark"] .contact {
+  background-color: #1f2937;
+}
+
+html[data-theme="dark"] .footer {
+  background-color: #1f2937;
+  color: #f9fafb;
+  border-top-color: #374151;
+}
+
+html[data-theme="dark"] .project-card {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .project-card h3 {
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .project-desc {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .skill-tag {
+  background-color: #1f2937;
+  color: #818cf8;
+}
+
+html[data-theme="dark"] .contact-item {
+  background-color: #1f2937;
+  color: #f9fafb;
+  border-color: #374151;
+}
+
+html[data-theme="dark"] .contact-item:hover {
+  color: #818cf8;
+}
+
+html[data-theme="dark"] .project-detail {
+  background-color: #1f2937;
+}
+
+html[data-theme="dark"] .project-section {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .project-section h2 {
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .project-section p {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .back-link {
+  color: #818cf8;
+}
+
+html[data-theme="dark"] .back-link:hover {
+  color: #a5b4fc;
+}
+
+html[data-theme="dark"] .docs-page {
+  background-color: #111827;
+}
+
+html[data-theme="dark"] .docs-layout {
+  background-color: #111827;
+}
+
+html[data-theme="dark"] .docs-sidebar-frame {
+  background-color: #1f2937;
+  border-right-color: #374151;
+}
+
+html[data-theme="dark"] .docs-main {
+  background-color: #111827;
+}
+
+html[data-theme="dark"] .doc-view {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .doc-view h1,
+html[data-theme="dark"] .doc-view h2,
+html[data-theme="dark"] .doc-view h3 {
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .doc-view p,
+html[data-theme="dark"] .doc-view li {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .doc-view a {
+  color: #818cf8;
+}
+
+html[data-theme="dark"] .doc-view a:hover {
+  color: #a5b4fc;
+}
+
+html[data-theme="dark"] .doc-view code {
+  background-color: rgba(129, 140, 248, 0.15);
+  color: #fca5a5;
+}
+
+html[data-theme="dark"] .doc-view pre {
+  background-color: #1a1a1a;
+  color: #e6e6e6;
+  border-color: #374151;
+}
+
+html[data-theme="dark"] .doc-toc {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+html[data-theme="dark"] .toc-link {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .toc-link:hover {
+  color: #f9fafb;
+  background-color: rgba(129, 140, 248, 0.1);
+}
+
+html[data-theme="dark"] .toc-link.active {
+  color: #818cf8;
+  border-left-color: #818cf8;
+  background-color: rgba(129, 140, 248, 0.15);
+}
+
+html[data-theme="dark"] .tree-item {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .tree-item:hover {
+  background-color: rgba(129, 140, 248, 0.1);
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .tree-item.active {
+  background-color: rgba(129, 140, 248, 0.15);
+  color: #818cf8;
+}
+
+html[data-theme="dark"] .mobile-toolbar {
+  background-color: #111827;
+  border-bottom-color: #374151;
+}
+
+html[data-theme="dark"] .toolbar-btn {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .toolbar-btn:hover {
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .sidebar-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+html[data-theme="dark"] .footer-nav-btn {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+html[data-theme="dark"] .footer-nav-btn:hover {
+  background-color: #2d3748;
+  border-color: #4b5563;
+}
+
+html[data-theme="dark"] .error-message {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left-color: #ef4444;
+  color: #fca5a5;
+}
+
+html[data-theme="dark"] .error-detail {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .screenshot-placeholder {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #d1d5db;
 }

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主题切换测试</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="common/themeToggle.js"></script>
+  <style>
+    .test-container {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 20px;
+    }
+    .test-box {
+      padding: 20px;
+      margin: 20px 0;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-primary);
+    }
+    .debug-info {
+      background: var(--bg-secondary);
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">主题测试</div>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="test-container">
+    <h1>主题切换测试页面</h1>
+    
+    <div class="test-box">
+      <h2>测试框 1</h2>
+      <p>这是一个测试框，用来验证深色模式是否正常工作。</p>
+      <p>背景色应该在浅色和深色之间切换。</p>
+    </div>
+
+    <div class="test-box">
+      <h2>测试框 2</h2>
+      <p>点击右上角的月亮/太阳图标来切换主题。</p>
+      <p>主题选择会被保存到浏览器本地存储。</p>
+    </div>
+
+    <div class="debug-info">
+      <h3>调试信息</h3>
+      <p>当前主题: <span id="current-theme">检测中...</span></p>
+      <p>HTML data-theme: <span id="html-theme">检测中...</span></p>
+      <p>localStorage theme: <span id="storage-theme">检测中...</span></p>
+      <p>--bg-primary: <span id="bg-color">检测中...</span></p>
+    </div>
+  </div>
+
+  <script>
+    function updateDebugInfo() {
+      const html = document.documentElement;
+      const theme = html.getAttribute('data-theme');
+      const storageTheme = localStorage.getItem('theme');
+      const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-primary');
+      
+      document.getElementById('current-theme').textContent = theme || '未设置';
+      document.getElementById('html-theme').textContent = theme || '未设置';
+      document.getElementById('storage-theme').textContent = storageTheme || '未设置';
+      document.getElementById('bg-color').textContent = bgColor || '未设置';
+    }
+
+    // 初始更新
+    updateDebugInfo();
+
+    // 监听主题变化
+    const observer = new MutationObserver(updateDebugInfo);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    // 每秒更新一次（以防万一）
+    setInterval(updateDebugInfo, 1000);
+  </script>
+</body>
+</html>

@@ -1,49 +1,63 @@
 // 主题切换功能 - 可在所有页面中使用
 (function() {
-  // 立即应用保存的主题（在 DOM 加载前）
+  console.log('[Theme] Script loaded');
+  
+  const html = document.documentElement;
   const savedTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-
-  // 初始化主题
-  function initTheme() {
-    const html = document.documentElement;
-    const themeToggle = document.getElementById('themeToggle');
+  
+  console.log('[Theme] Saved theme:', savedTheme);
+  
+  // 立即设置主题
+  html.setAttribute('data-theme', savedTheme);
+  console.log('[Theme] Set data-theme to:', savedTheme);
+  
+  // 等待 DOM 加载完成后绑定事件
+  function setupThemeToggle() {
+    console.log('[Theme] Setting up toggle');
     
-    if (themeToggle) {
-      const themeIcon = themeToggle.querySelector('.theme-icon');
-      const currentTheme = html.getAttribute('data-theme');
-      
-      // 更新图标
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) {
+      console.log('[Theme] Toggle button not found');
+      return;
+    }
+    
+    console.log('[Theme] Toggle button found');
+    
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    
+    // 更新图标显示
+    function updateIcon(theme) {
       if (themeIcon) {
-        updateThemeIcon(currentTheme, themeIcon);
+        themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        console.log('[Theme] Icon updated to:', themeIcon.textContent);
       }
+    }
+    
+    // 初始化图标
+    updateIcon(savedTheme);
+    
+    // 绑定点击事件
+    themeToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
       
-      // 绑定切换事件
-      themeToggle.addEventListener('click', () => {
-        const current = html.getAttribute('data-theme');
-        const newTheme = current === 'light' ? 'dark' : 'light';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        if (themeIcon) {
-          updateThemeIcon(newTheme, themeIcon);
-        }
-      });
-    }
+      console.log('[Theme] Toggling from', currentTheme, 'to', newTheme);
+      
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateIcon(newTheme);
+      
+      console.log('[Theme] New data-theme:', html.getAttribute('data-theme'));
+    });
   }
-
-  // 更新图标
-  function updateThemeIcon(theme, iconElement) {
-    if (iconElement) {
-      iconElement.textContent = theme === 'light' ? '🌙' : '☀️';
-    }
-  }
-
-  // 页面加载时初始化
+  
+  // 确保 DOM 已加载
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTheme);
+    console.log('[Theme] DOM loading, waiting for DOMContentLoaded');
+    document.addEventListener('DOMContentLoaded', setupThemeToggle);
   } else {
-    initTheme();
+    console.log('[Theme] DOM already loaded');
+    setupThemeToggle();
   }
 })();
