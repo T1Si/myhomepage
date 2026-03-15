@@ -335,12 +335,13 @@ section {
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   overflow: hidden;
 }
 
 .app-icon-link:hover .app-icon-wrapper {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  transform: rotate(-15deg);
 }
 
 .app-icon-img {
@@ -355,6 +356,9 @@ section {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.95);
   margin-top: 0.25rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
 }
 
 .app-tagline {
@@ -362,6 +366,15 @@ section {
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
   margin-top: -0.25rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.app-icon-link:hover .app-name,
+.app-icon-link:hover .app-tagline {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .projects-grid {
