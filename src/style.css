@@ -89,6 +89,10 @@ html[data-theme="dark"] .navbar {
   height: auto;
 }
 
+html[data-theme="dark"] .logo {
+  color: #ffffff;
+}
+
 .mobile-toggle {
   display: none;
   align-items: center;
