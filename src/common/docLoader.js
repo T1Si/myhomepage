@@ -133,9 +133,60 @@ const DocLoader = {
   async loadAllDocs(docs) {
     const docContents = {};
     for (const doc of docs) {
-      docContents[doc.id] = await this.loadDoc(doc.id);
+      // 如果 doc 对象有 file 属性，使用完整路径；否则使用 id 加 .md
+      if (doc.file) {
+        // 从文件路径中提取文件名（不含扩展名）
+        const fileName = doc.file.split('/').pop().replace('.md', '');
+        docContents[doc.id] = await this.loadDocFromPath(doc.file);
+      } else {
+        docContents[doc.id] = await this.loadDoc(doc.id);
+      }
     }
     return docContents;
+  },
+
+  async loadDocFromPath(filePath) {
+    // 直接从指定路径加载文档
+    const origin = window.location.origin;
+    const pathname = window.location.pathname;
+    const dir = pathname.substring(0, pathname.lastIndexOf('/'));
+    
+    const bases = [
+      `${origin}${dir}/${filePath}`,           // 相对于当前页面
+      `${origin}/${filePath}`,                 // 网站根目录
+      `./${filePath}`,                         // 相对路径
+      `../${filePath}`,                        // 上级目录
+    ];
+
+    let lastError = null;
+    for (const url of bases) {
+      const urlWithCache = `${url}?t=${Date.now()}`;
+      console.log('尝试加载:', urlWithCache);
+      
+      try {
+        const response = await fetch(urlWithCache, { 
+          cache: 'no-cache',
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
+        
+        if (response.ok) {
+          const markdown = await response.text();
+          console.log('✅ 文档加载成功:', urlWithCache);
+          return this.parseMarkdown(markdown);
+        } else {
+          lastError = new Error(`HTTP ${response.status}: ${response.statusText}`);
+          console.warn('❌ 加载失败:', urlWithCache, lastError.message);
+        }
+      } catch (e) {
+        lastError = e;
+        console.warn('❌ 请求异常:', urlWithCache, e.message);
+      }
+    }
+    
+    console.error('所有路径尝试失败，最后错误:', lastError);
+    return `<h1>📄 文档加载失败</h1><p class="error-message">无法加载文档内容，请检查网络连接或稍后重试。</p><p class="error-detail">错误信息: ${lastError?.message || '未知错误'}</p>`;
   }
 };
 
