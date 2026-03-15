@@ -36,14 +36,19 @@
           style="width: 32px; height: 32px; max-width: 32px; max-height: 32px; object-fit: contain; display: block;">
         <span>响了么</span>
       </a>
-      <button class="mobile-toggle" id="sidebar-toggle" aria-label="Menu" style="display: none;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="mobile-toggle" id="sidebar-toggle" aria-label="Menu" style="display: none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -429,6 +434,7 @@
 
     initDocs();
   </script>
+  <script src="common/themeToggle.js"></script>
   <!-- Version: 2026-03-09-v6 -->
 </body>
 

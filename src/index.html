@@ -18,6 +18,9 @@
         <li><a href="#projects">作品</a></li>
         <li><a href="#contact">联系</a></li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span class="theme-icon">🌙</span>
+      </button>
     </div>
   </nav>
 
@@ -99,6 +102,7 @@
   </footer>
 
   <script>
+    // 平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -108,5 +112,6 @@
       });
     });
   </script>
+  <script src="common/themeToggle.js"></script>
 </body>
 </html>
