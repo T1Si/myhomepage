@@ -163,28 +163,52 @@ html[data-theme="dark"] .navbar {
 }
 
 .theme-toggle {
-  background: transparent;
-  border: 2px solid var(--border-color);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  width: 60px;
+  height: 32px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-left: 1rem;
+  padding: 2px;
+  position: relative;
 }
 
 .theme-toggle:hover {
-  background: var(--bg-secondary);
-  transform: rotate(20deg);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .theme-icon {
-  font-size: 1.25rem;
-  display: block;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
   line-height: 1;
+  transition: all 0.3s ease;
+}
+
+html[data-theme="dark"] .theme-toggle {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(129, 140, 248, 0.5);
+  justify-content: flex-end;
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(129, 140, 248, 0.7);
+}
+
+html[data-theme="dark"] .theme-icon {
+  background: rgba(129, 140, 248, 0.3);
 }
 
 .hero {
