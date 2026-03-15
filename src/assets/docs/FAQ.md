@@ -8,4 +8,6 @@ Q：查看是否给“响了么”授予了“闹钟”权限。
 
 S：点击应用主页左上角“设置”图标进入应用的设置页，点击"应用权限"选项，跳转到设备设置中“响了么”权限设置页面，允许“响了么”访问“闹钟”。
 
+[nao-zhong-wei-shen-me-bu-xiang.png](https://postimg.cc/3y1pjdw8)
+
 ![闹钟为什么不响](/Users/sisiuzer/Desktop/myhomepage/src/assets/pics/闹钟为什么不响.png)
