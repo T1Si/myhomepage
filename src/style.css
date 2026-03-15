@@ -1734,31 +1734,75 @@ html[data-theme="dark"] .doc-view {
 html[data-theme="dark"] .doc-view h1,
 html[data-theme="dark"] .doc-view h2,
 html[data-theme="dark"] .doc-view h3 {
-  color: #f9fafb;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+html[data-theme="dark"] .doc-view h1 {
+  color: #ffffff;
+  border-bottom-color: #374151;
+}
+
+html[data-theme="dark"] .doc-view h2 {
+  color: #ffffff;
+  border-left-color: #818cf8;
+}
+
+html[data-theme="dark"] .doc-view h3 {
+  color: #e0e7ff;
 }
 
 html[data-theme="dark"] .doc-view p,
 html[data-theme="dark"] .doc-view li {
-  color: #d1d5db;
+  color: #e5e7eb;
+  line-height: 1.8;
 }
 
-html[data-theme="dark"] .doc-view a {
+html[data-theme="dark"] .doc-view strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+html[data-theme="dark"] .doc-view em {
+  color: #e0e7ff;
+}
+
+html[data-theme="dark"] .doc-view ul,
+html[data-theme="dark"] .doc-view ol {
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .doc-view ul li::marker,
+html[data-theme="dark"] .doc-view ol li::marker {
   color: #818cf8;
 }
 
+html[data-theme="dark"] .doc-view a {
+  color: #60a5fa;
+}
+
 html[data-theme="dark"] .doc-view a:hover {
-  color: #a5b4fc;
+  color: #93c5fd;
+  border-bottom-color: #60a5fa;
 }
 
 html[data-theme="dark"] .doc-view code {
-  background-color: rgba(129, 140, 248, 0.15);
-  color: #fca5a5;
+  background-color: rgba(129, 140, 248, 0.2);
+  color: #fecaca;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
 }
 
 html[data-theme="dark"] .doc-view pre {
-  background-color: #1a1a1a;
-  color: #e6e6e6;
-  border-color: #374151;
+  background-color: #0f172a;
+  color: #e2e8f0;
+  border-color: #334155;
+  border: 1px solid #334155;
+}
+
+html[data-theme="dark"] .doc-view pre code {
+  color: #e2e8f0;
+  background: none;
 }
 
 html[data-theme="dark"] .doc-toc {
@@ -1838,4 +1882,81 @@ html[data-theme="dark"] .screenshot-placeholder {
   background-color: #1f2937;
   border-color: #374151;
   color: #d1d5db;
+}
+
+
+/* ===== 深色模式文档中心优化 ===== */
+html[data-theme="dark"] .sidebar-title {
+  color: #9ca3af;
+  border-bottom-color: #374151;
+}
+
+html[data-theme="dark"] .tree-item {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .tree-item:hover {
+  background-color: rgba(129, 140, 248, 0.1);
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .tree-item.active {
+  background-color: rgba(129, 140, 248, 0.2);
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+html[data-theme="dark"] .toc-title {
+  color: #9ca3af;
+  border-bottom-color: #374151;
+}
+
+html[data-theme="dark"] .toc-link {
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .toc-link:hover {
+  color: #e5e7eb;
+  background-color: rgba(129, 140, 248, 0.1);
+}
+
+html[data-theme="dark"] .toc-link.active {
+  color: #60a5fa;
+  border-left-color: #60a5fa;
+  background-color: rgba(129, 140, 248, 0.15);
+  font-weight: 600;
+}
+
+html[data-theme="dark"] .footer-nav-btn {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #d1d5db;
+}
+
+html[data-theme="dark"] .footer-nav-btn:hover {
+  background-color: #2d3748;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .footer-nav-btn .nav-btn-label {
+  color: #9ca3af;
+}
+
+html[data-theme="dark"] .footer-nav-btn .nav-btn-title {
+  color: #e5e7eb;
+}
+
+html[data-theme="dark"] .doc-view strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+html[data-theme="dark"] .doc-view em {
+  color: #e0e7ff;
+}
+
+html[data-theme="dark"] .doc-view ul li::marker,
+html[data-theme="dark"] .doc-view ol li::marker {
+  color: #818cf8;
 }
