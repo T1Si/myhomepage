@@ -12,11 +12,13 @@
     if (!themeToggle) return;
     
     const themeIcon = themeToggle.querySelector('.theme-icon');
+    const iconImg = themeIcon?.querySelector('.icon-img');
     
     // 更新图标显示
     function updateIcon(theme) {
-      if (themeIcon) {
-        themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+      if (iconImg) {
+        iconImg.src = theme === 'light' ? 'assets/pics/moon.svg' : 'assets/pics/sun.svg';
+        iconImg.alt = theme === 'light' ? 'moon' : 'sun';
       }
     }
     
