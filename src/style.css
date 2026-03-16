@@ -1827,8 +1827,9 @@ html[data-theme="dark"] .doc-view pre code {
 }
 
 html[data-theme="dark"] .doc-toc {
-  background-color: #1f2937;
-  border-color: #374151;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 html[data-theme="dark"] .toc-link {
