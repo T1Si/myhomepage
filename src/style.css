@@ -1377,11 +1377,11 @@ body.sidebar-active .sidebar-overlay {
     height: auto;
     max-height: calc(100vh - 160px);
     z-index: 1001;
-    background: #ffffff;
-    border: 1px solid #e8e7e5;
+    background: transparent;
+    border: none;
     border-radius: 12px;
     padding: 1rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     transform: translateY(-20px) scale(0.95);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
