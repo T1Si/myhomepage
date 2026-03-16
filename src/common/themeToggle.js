@@ -17,8 +17,9 @@
     // 更新图标显示
     function updateIcon(theme) {
       if (iconImg) {
-        iconImg.src = theme === 'light' ? 'assets/pics/moon.svg' : 'assets/pics/sun.svg';
-        iconImg.alt = theme === 'light' ? 'moon' : 'sun';
+        // 浅色模式显示 sun.svg，深色模式显示 moon.svg
+        iconImg.src = theme === 'light' ? 'assets/pics/sun.svg' : 'assets/pics/moon.svg';
+        iconImg.alt = theme === 'light' ? 'sun' : 'moon';
       }
     }
     
