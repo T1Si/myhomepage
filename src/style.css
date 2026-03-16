@@ -173,25 +173,24 @@ html[data-theme="dark"] .logo.logo-with-icon span {
 }
 
 .theme-toggle {
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(99, 102, 241, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
   border-radius: 50px;
-  width: 60px;
-  height: 32px;
+  width: 70px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   margin-left: 1rem;
-  padding: 2px;
+  padding: 3px;
   position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(99, 102, 241, 0.8);
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .theme-icon {
@@ -199,34 +198,37 @@ html[data-theme="dark"] .logo.logo-with-icon span {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: rgba(0, 0, 0, 0.1);
+  width: 30px;
+  height: 30px;
+  background: rgba(200, 210, 230, 0.4);
   border-radius: 50%;
   line-height: 1;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
 }
 
 .icon-img {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   display: block;
 }
 
 html[data-theme="dark"] .theme-toggle {
-  background: rgba(0, 0, 0, 0.3);
-  border-color: rgba(96, 165, 250, 0.6);
-  justify-content: flex-end;
+  background: rgba(30, 41, 59, 0.6);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 html[data-theme="dark"] .theme-toggle:hover {
-  background: rgba(0, 0, 0, 0.4);
-  border-color: rgba(96, 165, 250, 0.8);
-  box-shadow: 0 0 12px rgba(96, 165, 250, 0.3);
+  background: rgba(30, 41, 59, 0.8);
 }
 
 html[data-theme="dark"] .theme-icon {
-  background: rgba(96, 165, 250, 0.2);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* 深色模式下图标位置在右侧 */
+html[data-theme="dark"] .theme-toggle {
+  justify-content: flex-end;
 }
 
 .hero {
